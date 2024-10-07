@@ -1,0 +1,30 @@
+---
+import Head from '@components/Head.astro';
+import '@styles/global.css';
+import BackgroundImage from '@home/BackgroundImage.astro';
+import Header from '@shared/Header.astro';
+
+interface Props {
+    title?: string;
+    h1?: string;
+    image?: string;
+    description?: string;
+    author?:string,
+}
+
+const { title, h1, image, description, author = 'Tikendev' } = Astro.props;
+---
+
+<!-- A Clone of the Disney+ application. Created with ❤️ by Tikendev -->
+
+<html lang="es">
+    <Head title={ title } image={ image } author={ 'Tikendev' }/>
+	<body>
+        <BackgroundImage />
+        <!-- HEADER -->
+        <Header />
+        <main>
+            <slot />
+        </main>
+	</body>
+</html>

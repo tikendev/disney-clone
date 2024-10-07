@@ -1,0 +1,70 @@
+---
+import Navbar from '@shared/Navbar.astro';
+import UserProfile from '@shared/UserProfile.astro';
+---
+
+<header id="header" class="header">
+    <picture>
+        <a href="">
+            <img class="logo" src="/assets/images/disney-plus-logo-white.png">
+        </a>
+    </picture>
+    <!-- Navbar -->
+    <Navbar />
+    <!-- User Profile -->
+    <UserProfile />
+</header>
+
+<style>
+.header {;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding: 0;
+    background-color: var(--bg-header-mobile);
+    gap: 1rem;
+    
+    @media (min-width: 768px) {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        height: 72px;
+        background-color: transparent;
+        padding: 0 1.25rem;
+    }
+
+    @media (min-width: 1024px) {
+        padding-inline-start: 1.25rem;
+        padding-inline-end: 1.25rem;
+        gap: .15rem;
+    }
+
+    @media (min-width: 1440px) {
+        padding-inline-start: 2.25rem;
+        padding-inline-end: 2.25rem;
+        gap: 2rem;
+    }
+}
+
+/* Background Color is active with the window.scrollY is greater than 32px */
+.bg-scroll {
+    background-color: var(--bg-header);
+    will-change: background-color;
+    transition: background-color .001s;
+}
+
+.logo {
+    display: none;
+    width: 62px;
+    height: 38px;
+
+    @media (min-width: 768px) {
+        display: flex;
+        width: 100%;
+        min-width: 86px;
+        height: 48px;
+    }
+}
+</style>

@@ -1,0 +1,115 @@
+---
+import { categories } from '@data/categories'
+
+console.log(categories);
+
+---
+<section class="section wrapper">
+    <div class="categories-container">
+        {
+            categories.map(category => (
+            <div class="categorie-card">
+                <img class="categorie-card-img" src={ category.img } alt={ category.name }>
+                <video
+                    src={ category.video }
+                    class="categorie-card-video"
+                    autoplay
+                    loop
+                ></video>
+            </div>
+            ))
+        }
+    </div>
+
+</section>
+
+<style>
+.categories-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: .65rem;
+    place-items: center;
+    position: relative;
+    top: -24px;
+
+    @media (min-width: 1024px) {
+        gap: 1.5rem;
+        display: flex;
+        width: 90vw;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0 auto;
+        top: 0;
+    }
+}
+
+.categorie-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    background: linear-gradient(rgb(48, 50, 62), rgb(30, 31, 42));
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    flex-basis: auto;
+    box-shadow: rgba(0 0 0 / 69%) 0px 26px 30px -10px, rgba(0 0 0 / 73%) 0px 16px 10px -10px;
+    cursor: pointer;
+    border: 2px solid var(--border);
+    transition: all 200ms cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s;
+
+    @media (min-width: 768px) {
+        border: 4px solid transparent;
+        border-top: 4px solid #2F313D;
+        border-bottom: 4px solid #20212B;
+        border-radius: 10px;
+    }
+
+    @media (min-width: 1024px) {
+
+        &:hover {
+            box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px, rgb(0 0 0 / 72%) 0px 30px 22px -10px;
+            transform: scale(1.14);
+            outline: 3px solid #fff;
+            border-radius: .875rem;
+        }
+
+        &:hover .categorie-card-video {
+            opacity: 1;
+            transform: scale(1.14);
+        }
+    }
+
+    @media (min-width: 1920px) {
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &:hover .categorie-card-video {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.categorie-card-img {
+    width: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 2;
+}
+
+.categorie-card-video {
+    opacity: 0;
+    transition: 500ms ease-in-out 0s;
+    object-fit: cover;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: .2rem;
+}
+</style>
+
+

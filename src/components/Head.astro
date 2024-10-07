@@ -1,0 +1,32 @@
+---
+import { siteInfo as site } from '@config/site-info';
+
+interface Props {
+    title?: string;
+    image?: string;
+    description?: string;
+    author?: string;
+    favicon?: string;
+}
+
+const { favicon = site.favicon, author = site.author, description = site.description, title = site.title, image = site.image } = Astro.props;
+---
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={ favicon } />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO -->
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+
+    <!-- OG Metatags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Required -->
+    <title>{title}</title>
+</head>

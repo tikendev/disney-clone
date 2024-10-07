@@ -1,0 +1,449 @@
+---
+import { Image } from 'astro:assets';
+import { imagePaths, titleImagePaths, hasTitles } from '@data/hero-images';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+---
+<div class="banner-slider swiper" data-banner="slider">
+    <div class="swiper-wrapper">
+        {
+            imagePaths.map((img, index) => (
+                <div class="banner-slider-item swiper-slide" data-banner="item">
+                    <a class="banner-slider-link" href="/">
+                        <Image
+                            src={img}
+                            alt={`slider-img-${index + 1}`}
+                            class="slide-img"
+                            format="webp"
+                            quality="high"
+                            loading="eager"
+                        />
+
+                        {hasTitles && (
+                            <Image
+                                src={titleImagePaths[index]}
+                                alt={`slider-title-${index + 1}`}
+                                class="slide-overlay" 
+                                data-banner="title-overlay"
+                                format="webp"
+                                quality="max"
+                                loading="lazy"
+                            />
+                        )}
+                        <h4 class="slide-h4" data-banner="info-overlay">Nuevos episodios ya disponibles</h4>
+                    </a>
+                </div>
+            ))
+        }
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+</div>
+
+<style>
+
+.swiper {
+    width: 100%;
+    padding: 2rem 1rem;
+    height: 100%;
+
+    @media (min-width: 768px) {
+        padding: 0rem 3rem 2rem;
+    }
+
+    @media (min-width: 1204px) {
+        padding: 0 4rem 1.75rem;
+    }
+    
+    @media (min-width: 1440px) {
+        padding: 0 4.8rem 2rem;
+    }
+    
+    @media (min-width: 1920px) {
+        padding: 0 6rem 2rem;
+    }
+    
+    @media (min-width: 2560px) {
+        padding: 0 8rem 2rem;
+    }
+}
+
+.swiper-wrapper {
+    height: 100%;
+    margin-block-end: 1rem;
+    height: 380px;
+
+    @media (min-width: 1024px) {
+        height: 450px;
+    }
+
+    @media (min-width: 1920px) {
+        height: 550px;
+    }
+
+    @media (min-width: 2400px) {
+        height: 750px;
+    }
+}
+
+.banner-slider-item {
+    transition: all 300ms cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s;
+    box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    margin-block-end: 0;
+    
+    @media (min-width: 1024px) {
+        margin-block-end: 2rem;
+    }
+}
+
+.banner-slider-item::after {
+    border: 4px solid transparent;
+    inset: 0;
+    content: "";
+    position: absolute;
+    transition: border 150ms linear 0s;
+    border-radius: 4px;
+    transition: all 300ms cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s;
+}
+
+.banner-slider-item.background-color::after {
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.slide-overlay {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    width: 40%;
+}
+
+.slide-img {
+    border-radius: 4px;
+    height: 150px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.slide-h4 {
+    position: absolute;
+    bottom: 10%;
+    left: 6.5%;
+    color: var(--white);
+    font-size: .65rem;
+    font-weight: 100;
+    letter-spacing: normal;
+    opacity: 1;
+}
+
+@media (min-width: 500px) {
+
+    .slide-overlay {
+        top: 10px;
+        left: 20px;
+        width: 35%;
+    }
+    .slide-h4 {
+        bottom: 12%;
+        left: 5%;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .banner-slider-item {
+        transition: all 300ms cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s;
+        height: 100%;
+    }
+
+    .slide-overlay {
+        top: 15px;
+        left: 60px;
+        width: 30%;
+    }
+
+    .slide-img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .slide-h4 {
+        bottom: 10%;
+        left: 9.8%;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    /* Banner Hover */
+    .banner-slider-item.swiper-slide-active:hover::after {
+        border: 4px solid var(--border-hover);
+    }
+
+    /* Translate Overlay Title */
+    .slide-overlay {
+        opacity: 0;
+        top: 15px;
+        left: 100px;
+        width: 30%;
+        transition: transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 150ms;
+    }
+    
+    .slide-overlay.active {
+        opacity: 1;
+        transform: translateX(-30px);
+        animation: opacityTitleSlider 1000ms;
+    }
+
+    /* Opacity Info Overlay */
+    .slide-h4 {
+        bottom: 7%;
+        left: 7%;
+        opacity: 0;
+    }
+    
+    .slide-h4.visible{
+        opacity: 1;
+        animation: opacityTextSlider 2500ms;
+    }
+
+    .slide-img.background-animation {
+        animation: bgAnimation 400ms ease-in-out;
+    }
+}
+
+@media (min-width: 1440px) {
+
+    .banner-section {
+        margin-block-start: 1rem;
+    }
+
+    .slide-overlay.active {
+        top: 50px;
+        left: 155px;
+        width: 28%;
+        transform: translateX(-40px);
+        transition: transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 150ms;
+    }
+
+    .slide-h4 {
+        bottom: 10%;
+        left: 7%;
+        font-size: 1.20rem;
+        font-weight: 500;
+    }
+}
+
+@media (min-width: 1920px) {
+
+    .slide-overlay.active {
+        top: 60px;
+        left: 200px;
+        width: 28%;
+        transform: translateX(-60px);
+        transition: transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 150ms;
+    }
+
+    .slide-h4 {
+        bottom: 10%;
+        left: 4%;
+        font-size: 1.5rem;
+    }
+}
+
+/* Opacity Text Banner Slider */
+@keyframes opacityTextSlider {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0;
+    }
+    60% {
+        opacity: .5;
+    }
+    80% {
+        opacity: .8;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Opacity Title Banner Slider */
+@keyframes opacityTitleSlider {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Background Animation */
+@keyframes bgAnimation {
+    0% {
+        transform: scale(1.6);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.swiper-pagination-bullets {
+    display: none;
+
+    @media (min-width: 1024px) {
+        display: block;
+    }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    transition: opacity 400ms ease-out;
+}
+
+@media (min-width: 1024px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+        opacity: 0;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+        opacity: 1;
+    } 
+}
+
+.swiper-button-prev:after, 
+.swiper-button-next:after {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.75rem;    
+}
+
+@media (min-width: 1200px) {
+    .swiper-button-prev:after, 
+    .swiper-button-next:after {
+        display: flex;
+        border: 20px solid transparent;
+        height: 50vh;
+        position: relative;
+        top: -20px
+    }
+
+    .swiper-button-prev:after {
+        left: -10px;
+    }
+
+    .swiper-button-next:after {
+        right: -10px;
+    }
+}
+
+@media (min-width: 1440px) {
+
+    .swiper-button-prev:after {
+        left: -5px;
+    }
+
+    .swiper-button-next:after {
+        right: -5px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .swiper-button-prev:after, 
+    .swiper-button-next:after {
+        border: 40px solid transparent;
+        height: 70vh;
+    }
+
+    .swiper-button-prev:after {
+        left: 10px;
+    }
+
+    .swiper-button-next:after {
+        right: 10px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .swiper-button-prev:after, 
+    .swiper-button-next:after {
+        border: 80px solid transparent;
+        height: 70vh;
+    }
+
+    .swiper-button-prev:after {
+        left: 25px;
+    }
+
+    .swiper-button-next:after {
+        right: 25px;
+    }
+}
+</style>
+
+<script>
+import Swiper from 'swiper';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import { initHandleActiveSlide, handleActiveSlide } from '@helpers/slider';
+
+const isMobile = () => {
+    return window.innerWidth <= 1024;
+}
+
+const swiper = new Swiper('.swiper', {
+        loop: true,
+        slidesPerView: 1,
+        centeredSlides: true,
+        spaceBetween: 20,
+        pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+
+    speed: 800,
+    autoplay: {
+        delay: 5000,
+        pauseOnMouseEnter: true,
+    },
+
+    on: {
+        init: () => {
+            initHandleActiveSlide();
+        },
+
+        slideChangeTransitionEnd: () => {
+            handleActiveSlide();
+        }
+    },
+
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+
+    allowTouchMove: isMobile(),
+    modules: [Pagination, Navigation, Autoplay]
+});
+</script>

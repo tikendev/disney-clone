@@ -1,0 +1,250 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<div class="profile">
+    <span id="userName" class="profile-username">Tiken</span>
+    <img id="userProfileImg" class="profile-img" src="/assets/images/profile.png" alt="User Profile">
+    <div class="dropdown-profile-position">
+        <div id="userProfileMenu" class="dropdown-profile-container">
+            <ul class="dropdown-profile">
+                <hr class="hr">
+                <li class="dropdown-profile-item">
+                    <!-- <i class="fa-solid fa-plus profile-icon"></i> -->
+                    <Icon
+                        class="profile-icon"
+                        name="mdi:plus"
+                        style="color: white"
+                    />
+                    <span class="profile-item-text">Añadir perfil</span>
+                </li>
+                <li class="dropdown-profile-item">
+                    <span class="profile-item-text">Editar perfiles</span>
+                </li>
+                <li class="dropdown-profile-item">
+                    <span class="profile-item-text">Configuración de la aplicación</span>
+                </li>
+                <li class="dropdown-profile-item">
+                    <span class="profile-item-text">Cuenta</span>
+                </li>
+                <li class="dropdown-profile-item">
+                    <span class="profile-item-text">Ayuda</span>
+                </li>
+                <li class="dropdown-profile-item">
+                    <span class="profile-item-text">Cerrar sesión</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Profile User */
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    right: 0;
+    width: auto;
+}
+
+.profile-img {
+    width: 100%;
+    max-width: 32px;
+    z-index: 50;
+}
+
+.profile-username {
+    display: none;
+    font-size: .9375rem;
+    color: var(--white);
+    font-weight: 100;
+    z-index: 50;
+}
+
+.dropdown-profile-container {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+
+    .profile {
+        width: 100px;
+        justify-content: flex-end;
+    }
+
+    .profile-img {
+        cursor: pointer;
+    }
+
+    .dropdown-profile-position {
+        position: relative;
+    }
+
+    .dropdown-profile-container {
+        display: flex;
+        position: absolute;
+        top: -935px;
+        transition: 400ms;
+    }
+
+    .hr {
+        border: 1px solid rgba(249, 249, 249, 0.1);
+        width: 100%;
+        margin-block-start: 72px;
+        margin-block-end: 1rem;
+    }
+
+    .dropdown-profile {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 1rem;
+        padding-block-start: 5rem;
+        top: 0;
+        right: 0;
+        background-color: rgba(19, 19, 19);
+        border: 1px solid rgba(151, 151, 151, 0.34);
+        box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
+        height: auto;
+        max-height: calc(100vh - 40px);
+        padding: 0px 20px 20px;
+        width: 240px;
+        -webkit-box-align: center;
+        border-radius: 0px 0px 0px 4px;
+        -webkit-box-pack: end;
+        z-index: 9;
+    }
+
+    .dropdown-profile-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--profile-menu-text);
+        cursor: pointer;
+    }
+
+    .profile-icon {
+        font-size: 24px;
+        background-color: rgba(249, 249, 249, 0.1);
+        border-radius: 50%;
+        padding: .1rem;
+        width: 3rem;
+        height: 3rem;
+        transition: .2s;
+        cursor: pointer;
+    }
+
+    .profile-icon:hover {
+        background-color: rgba(249, 249, 249, 0.2);
+    }
+
+    .profile-item-text {
+        font-size: 15px;
+        letter-spacing: -.1px;
+        line-height: 1.53;
+        transition: .2s;
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+    .profile {
+        width: 200px;
+        justify-content: flex-end;
+    }
+
+    .profile-img {
+        width: 100%;
+        max-width: 42px;
+        cursor: pointer;
+
+    }
+
+       /* Profile User Menu Hover */
+
+       .profile-item-text:hover {
+        color: var(--pm-text-hover);
+    }
+
+    .profile:hover .dropdown-profile-container {
+        top: -35px;
+        transition: 400ms;
+    }
+
+    .profile:hover .hr {
+        animation: hrOpacity 1200ms ease;
+    }
+
+    .profile:hover .dropdown-profile-item,
+    .profile:hover .profile-icon {
+        animation: pmItemsOpacity 800ms ease-in-out;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+
+    .profile-username {
+        display: flex;
+        cursor: pointer;
+    }
+
+    .profile:hover .profile-username {
+        display: flex;
+        cursor: pointer;
+        animation: hrOpacity 0;
+    }
+}
+
+
+/* Profile User Menu onClick */
+
+.active {
+    top: -35px;
+    transition: 400ms;
+}
+
+.display-name {
+    display: flex;
+    cursor: pointer;
+    animation: hrOpacity 800ms;
+}
+
+/* Opacity Hr Profile User Menu */
+
+@keyframes hrOpacity {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0;
+    }
+    50% {
+        opacity: .5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Opacity Text Profile User Menu */
+
+@keyframes pmItemsOpacity {
+    0% {
+        opacity: .3;
+    }
+    25% {
+        opacity: .3;
+    }
+    50% {
+        opacity: .4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+</style>

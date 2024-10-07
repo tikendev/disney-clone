@@ -1,0 +1,28 @@
+:root {
+    /* COLORS */
+
+    --bg-header: #0e0b14;
+    --bg-header-mobile: rgba(14, 11, 20, 0.605);
+    --bg-body: #1A1D29;
+    --bg-section: #050309;
+    --background: radial-gradient(rgba(48, 50, 62), rgba(30, 31, 42));
+    --white: #f9f9f9;
+    --mobile-icon: #f6ebebb3;
+    --mobile-title: #cdced1;
+    --profile-menu-text: #cacaca;
+    --pm-text-hover: rgba(249, 249, 249);
+    --border: #494952;
+    --border-hover: rgba(249, 249, 249, .8);
+    --bullet-inactive: #969EAB;
+    --bullet-active: #F9F9F9;
+
+    /* FONTS */
+    --fontBase: 'AvenirLTStd', sans-serif;
+
+    /* Swiper */
+    --swiper-pagination-color: #f9f9f9;
+    --swiper-pagination-bullet-inactive-color: #969EAB;
+    --swiper-pagination-bullet-size: .5rem;
+    --swiper-pagination-bullet-opacity: 1;
+    --swiper-pagination-bullet-horizontal-gap: .4rem;
+}
