@@ -25,6 +25,7 @@ import UserProfile from '@shared/UserProfile.astro';
     padding: 0;
     background-color: var(--bg-header-mobile);
     gap: 1rem;
+    transition: background-color 400ms ease-in-out;
     
     @media (min-width: 768px) {
         position: sticky;
@@ -68,3 +69,20 @@ import UserProfile from '@shared/UserProfile.astro';
     }
 }
 </style>
+
+<script>
+const changeBgColor = () => {
+    const header = document.getElementById('header') as HTMLElement;
+
+    if (window.scrollY > 16)
+        header.classList.add('bg-scroll');
+    else
+        header.classList.remove('bg-scroll');
+}
+
+const init = () => {
+    window.addEventListener('scroll', changeBgColor);
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>

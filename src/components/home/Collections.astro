@@ -1,0 +1,15 @@
+---
+import { getNewContentFromDisney } from '@helpers/fetchData'
+import Collection from '@shared/Collection.astro';
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+const newContentFromDisney = await getNewContentFromDisney();
+
+console.log(newContentFromDisney);
+---
+<section class="collections">
+    <!-- New in Disney+ -->
+     <Collection title='Nuevo en Disney+' fetchData={newContentFromDisney} />
+
+</section>
